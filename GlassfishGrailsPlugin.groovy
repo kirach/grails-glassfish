@@ -1,6 +1,6 @@
 class GlassfishGrailsPlugin {
     // the plugin version
-    def version = "0.1"
+    def version = "0.1-SNAPSHOT"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "2.0 > *"
     // the other plugins this plugin depends on
@@ -12,10 +12,10 @@ class GlassfishGrailsPlugin {
 
     // TODO Fill in these fields
     def title = "Glassfish Plugin" // Headline display name of the plugin
-    def author = "Your name"
-    def authorEmail = ""
+    def author = "kiRach"
+    def authorEmail = "kirach@kirach.net"
     def description = '''\
-Brief summary/description of the plugin.
+Plugin for developing grails applications inder glassfish app-server.
 '''
 
     // URL to the plugin's documentation
