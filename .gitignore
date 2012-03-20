@@ -1,0 +1,6 @@
+#.gitignore for glassfish plugin
+
+#IDE support files
+.classpath
+.project
+.settings
