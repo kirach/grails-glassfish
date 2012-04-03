@@ -1,9 +1,7 @@
-import org.glassfish.embeddable.GlassFishRuntime
+package net.kirach.grails.plugin.glassfish
+
 import grails.web.container.EmbeddableServerFactory
 import grails.web.container.EmbeddableServer
-import org.glassfish.embeddable.BootstrapProperties
-import org.glassfish.embeddable.GlassFishProperties
-import org.glassfish.embeddable.GlassFish
 
 /**
  * Factory for glassfish server. Provides ability to embed

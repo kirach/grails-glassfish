@@ -1,3 +1,5 @@
+package net.kirach.grails.plugin.glassfish
+
 import grails.web.container.EmbeddableServer
 import org.glassfish.embeddable.GlassFish
 import org.glassfish.embeddable.GlassFishProperties
