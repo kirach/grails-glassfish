@@ -7,9 +7,12 @@ class GlassfishGrailsPlugin {
 	def dependsOn = [:]
 	// resources that are excluded from plugin packaging
 	def pluginExcludes = [
-			"grails-app/views/*.gsp",
-			"grails-app/domain/*.groovy",
-			"grails-app/controllers/*.groovy"
+			"grails-app/views/error.gsp",
+			"grails-app/views/index.gsp",
+			"grails-app/views/test/index.gsp",
+			"grails-app/controllers/glassfish/TestController.groovy",
+			"web-app/js/application.js",
+			"web-app/test.gsp",
 	]
 
 	// don't package in war
