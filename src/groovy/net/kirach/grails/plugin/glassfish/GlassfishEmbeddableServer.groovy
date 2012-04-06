@@ -7,10 +7,10 @@ import grails.util.BuildSettingsHolder
 import grails.web.container.EmbeddableServer
 import org.glassfish.embeddable.GlassFish
 import org.glassfish.embeddable.GlassFishRuntime
-import org.glassfish.embeddable.archive.ScatteredArchive
 import org.glassfish.embeddable.web.Context
 import org.glassfish.embeddable.web.WebContainer
 import org.glassfish.embeddable.web.config.WebContainerConfig
+import org.apache.commons.io.FileUtils
 
 /**
  * Glassfish embeddable server for grails use.
@@ -34,8 +34,8 @@ class GlassfishEmbeddableServer implements EmbeddableServer {
 	 * Constructor.
 	 */
 	GlassfishEmbeddableServer(String basedir, String webXml, String contextPath, ClassLoader classLoader) {
-		this.buildSettings = BuildSettingsHolder.getSettings()
-		this.glassfish = GlassFishRuntime.bootstrap().newGlassFish();
+		buildSettings = BuildSettingsHolder.getSettings()
+		glassfish = GlassFishRuntime.bootstrap().newGlassFish();
 
 		//just remember this params for using later
 		this.webXml = webXml
@@ -44,34 +44,44 @@ class GlassfishEmbeddableServer implements EmbeddableServer {
 		this.classLoader = classLoader
 	}
 
+	/**
+	 * Start embedded glassfish and deploy grails app to it.
+	 *
+	 * @param host
+	 * @param httpPort
+	 */
 	private doStart(String host, int httpPort) {
 		CONSOLE.updateStatus "Starting GlassFish server"
 
 		//start server
-		this.glassfish.start();
+		glassfish.start();
 
-		this.embedded = glassfish.getService(WebContainer.class);
+		//get web-container
+		embedded = glassfish.getService(WebContainer.class);
 
+		//set web-container' config
 		WebContainerConfig config = new WebContainerConfig();
 		//here we can configure our web container
 		config.setPort(httpPort)
 		config.setHostNames(host)
-		this.embedded.setConfiguration(config);
+		embedded.setConfiguration(config);
 
+		//enable comet support, if needed
 		if (getConfigParam("comet")) {
 			CONSOLE.updateStatus "Enabling GlassFish Comet support"
 			def commandRunner = glassfish.getCommandRunner()
 			def res = commandRunner.run("set", "server-config.network-config.protocols.protocol." + config.getListenerName() + ".http.comet-support-enabled=true")
 		}
 
-		//let's create scattered archive - representation of our web-application
-		//but we won't use it by the way described in documentation - we need it for creating custom context
-		ScatteredArchive archive = new ScatteredArchive(this.contextPath, ScatteredArchive.Type.WAR, new File(this.basedir))
-		archive.addMetadata(new File(this.webXml));
+		//copy grails' web.xml to our directory
+		def tempWebXml = new File("${this.basedir}/WEB-INF/web.xml")
+		FileUtils.copyFile(new File(this.webXml), tempWebXml)
 
-		//let's create context - our web application from scattered war from step before and ClassLoader, provided by grails
-		this.context = this.embedded.createContext(new File(archive.toURI()), this.contextPath, this.classLoader)
+		//let's create context - our web application from basedir war from step before and ClassLoader, provided by grails
+		this.context = this.embedded.createContext(new File(this.basedir), this.contextPath, this.classLoader)
 
+		//remove previously copied web.xml after deployment
+		tempWebXml.delete()
 	}
 
 	@Override
@@ -122,6 +132,12 @@ class GlassfishEmbeddableServer implements EmbeddableServer {
 		start()
 	}
 
+	/**
+	 * Get config param from "Config.groovy", related to glassfish.
+	 *
+	 * @param name Param name.
+	 * @return Param value.
+	 */
 	private getConfigParam(String name) {
 		buildSettings.config.grails.glassfish[name]
 	}

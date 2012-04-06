@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>Test Controller</title>
-    <script type="text/javascript" src="/js/application.js"></script>
 </head>
 
 <body>
