@@ -27,11 +27,13 @@ grails.project.dependency.resolution = {
 		// specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
 		// runtime 'mysql:mysql-connector-java:5.1.5'
+		build 'org.slf4j:slf4j-api:1.6.6'
+		build 'org.slf4j:slf4j-log4j12:1.6.6'
 		build 'org.glassfish.main.extras:glassfish-embedded-all:3.1.2'
 	}
 
 	plugins {
-		build(":release:1.0.0") {
+		build(":release:1.0.1") {
 			export = false
 		}
 	}
