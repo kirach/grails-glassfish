@@ -5,12 +5,12 @@ import static grails.build.logging.GrailsConsole.instance as CONSOLE
 import grails.util.BuildSettings
 import grails.util.BuildSettingsHolder
 import grails.web.container.EmbeddableServer
+import org.apache.commons.io.FileUtils
 import org.glassfish.embeddable.GlassFish
 import org.glassfish.embeddable.GlassFishRuntime
 import org.glassfish.embeddable.web.Context
 import org.glassfish.embeddable.web.WebContainer
 import org.glassfish.embeddable.web.config.WebContainerConfig
-import org.apache.commons.io.FileUtils
 
 /**
  * Glassfish embeddable server for grails use.
@@ -77,11 +77,13 @@ class GlassfishEmbeddableServer implements EmbeddableServer {
 		def tempWebXml = new File("${this.basedir}/WEB-INF/web.xml")
 		FileUtils.copyFile(new File(this.webXml), tempWebXml)
 
-		//let's create context - our web application from basedir war from step before and ClassLoader, provided by grails
-		this.context = this.embedded.createContext(new File(this.basedir), this.contextPath, this.classLoader)
-
-		//remove previously copied web.xml after deployment
-		tempWebXml.delete()
+		try {
+			//let's create context - our web application from basedir war from step before and ClassLoader, provided by grails
+			this.context = this.embedded.createContext(new File(this.basedir), this.contextPath, this.classLoader)
+		} finally {
+			//remove previously copied web.xml after deployment
+			tempWebXml.delete()
+		}
 	}
 
 	@Override
