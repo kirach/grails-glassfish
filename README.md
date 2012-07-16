@@ -65,7 +65,7 @@ P.S.: if you need some additional params, you can email me on kirach@kirach.net 
 
 ## Notes
 
-+ For now, plugin supports only using `run-app` command. It doesn't support `run-war` command or using https. If one of this cases is your and you need it to be supported by plugin, email me on kirach@kirach.net or leave your request in [issues](https://github.com/kiRach/grails-glassfish/issues)
++ For now, plugin supports only using `run-app` command. It doesn't support `run-war` command or using https. If one of this cases is your and you need it to be supported by plugin, email me on kirach@kirach.net or leave your request in [issues](https://github.com/kiRach/grails-glassfish/issues).
 
 + When you will run your application, using this plugin, you can see in console some errors, reporting by slf4j. Like this ones:
 ```
