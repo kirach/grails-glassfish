@@ -54,4 +54,4 @@ and now you have working grails application under Glassfish app server.
 | Error SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
 | Error SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
 ```
-It's normal behavior and you can ignore this messages. Glassfish embedded server(this is used by plugin) is distributed with "built-in" slf4j dependencies, and Grails uses same dependencies too(but other versions). That's why this messages appears(signaling about multiples slf4j bindings found). But as a result, slf4j choses first founded binding and uses it. Plugin in constructed with respect of this  behavior.
+It's normal behavior and you can ignore this messages. Glassfish embedded server(this is used by plugin) is distributed with "built-in" slf4j dependencies, and Grails uses same dependencies too(but other versions). That's why this messages appears(signaling about multiples slf4j bindings found). But as a result, slf4j chooses first founded binding and uses it. Plugin is constructed with respect of this behavior.
