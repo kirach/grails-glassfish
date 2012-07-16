@@ -6,7 +6,7 @@ It may be useful, when you have Glassfish application server in your production 
 ## Installation
 Just now, plugin is not available from central Grails plugin repository(but I'm going to publish it there as soon as possible), so there are different ways to install this plugin:
 
-###### Get ready-to-use plugin
+### Get ready-to-use plugin
 Most simple way is to get packaged and ready-to-use plugin. First, download it:
 
 [latest version of plugin](https://dl.dropbox.com/u/8513842/grails-glassfish-0.1.2.zip)
@@ -15,7 +15,7 @@ And then install it:
 
 `grails install-plugin /path/where/your/donwload/plugin`
 
-###### Build from source and install
+### Build from source and install
 Second, you can manually build plugin from source on your local machine, and then install it. You need checkout last version of sources of plugin:
 
 `git clone https://github.com/kiRach/grails-glassfish.git`
