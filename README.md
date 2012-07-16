@@ -41,6 +41,28 @@ Then, you can just run
 
 and now you have working grails application under Glassfish app server.
 
+## Additional config params
+You can specify some config params, if you need it. Each config param should be specified in `BuildConfig.groovy` file, and should have this semantic:
+
+```
+grails.glassfish.${PARAM_NAME} = ${PARAM_VALUE}
+```
+
+For example, if you want to enable websocket support, you need to specify in `BuildConfig.groovy` file:
+
+```
+grails.glassfish.websocket = true
+```
+
+For now, available params are:
++ ***websocket***: `true` or `false`
+Let you enable websocket support.
+
++ ***comet***: `true` or `false`
+Let you enable comet support.
+
+P.S.: if you need some additional params, you can email me on kirach@kirach.net or leave your request in [issues](https://github.com/kiRach/grails-glassfish/issues).
+
 ## Notes
 
 + For now, plugin supports only using `run-app` command. It doesn't support `run-war` command or using https. If one of this cases is your and you need it to be supported by plugin, email me on kirach@kirach.net or leave your request in [issues](https://github.com/kiRach/grails-glassfish/issues)
