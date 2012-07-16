@@ -29,7 +29,7 @@ And finally, you need to install packaged plugin:
 `grails install-plugin /path/to/packaged/plugin`
 
 ## Using
-First of all, you need to remove other app server plugin, if you have it already installed(cuz it can cause confison). For example, if you have Tomcat app server plugin installed(default behavior for any newly created Grails application), you need remove it by:
+First of all, you need to remove other app server plugin, if you have it already installed(cuz it can cause confusion). For example, if you have Tomcat app server plugin installed(default behavior for any newly created Grails application), you need remove it by:
 
 `grails uninstall-plugin tomcat`
 
