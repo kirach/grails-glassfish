@@ -73,6 +73,13 @@ class GlassfishEmbeddableServer implements EmbeddableServer {
 			def res = commandRunner.run("set", "server-config.network-config.protocols.protocol." + config.getListenerName() + ".http.comet-support-enabled=true")
 		}
 
+		//enable websocket support, if needed
+		if (getConfigParam("websocket")) {
+			CONSOLE.updateStatus "Enabling GlassFish Websocket support"
+			def commandRunner = glassfish.getCommandRunner()
+			def res = commandRunner.run("set", "server-config.network-config.protocols.protocol." + config.getListenerName() + ".http.websockets-support-enabled=true")
+		}
+
 		//copy grails' web.xml to our directory
 		def tempWebXml = new File("${this.basedir}/WEB-INF/web.xml")
 		FileUtils.copyFile(new File(this.webXml), tempWebXml)
