@@ -1,16 +1,18 @@
 # Grails Glassfish plugin
-A plugin for grails, that makes Glassfish the default app server for Grails during development. 
+A plugin for Grails, that makes Glassfish the default app server during development. 
 
 It may be useful, when you have Glassfish application server in your production environment, and want to test your software during development in production-like environment.
 
 ## Installation
 
-Just now, there are several ways of getting plugin installed. First, the default for any common grails plugin, is the most simple way. But if for some reason, it's not your variant, you can chose any other way.
+Just now, there are several ways of getting plugin installed. First, the default for any common Grails plugin, is the most simple way. But if for some reason, it's not your variant, you can chose any other way.
 
-### Default grails-way
-Like usual Grails plugin, Glassfish plugin is available from Grails Central Plugin Repository. And you can install it simply by:
+### Default Grails-way
+Like usual Grails plugin, Glassfish plugin is available from Grails Central Plugin Repository. And you can install it simply by adding a dependency to BuildConfig.groovy:
 
-`grails install-plugin glassfish`
+    plugins {
+       build ':glassfish:0.1.2'
+    }
 
 ### Get ready-to-use plugin
 You can get packaged and ready-to-use plugin. First, download it:
@@ -35,9 +37,7 @@ And finally, you need to install packaged plugin:
 `grails install-plugin /path/to/packaged/plugin`
 
 ## Using
-First of all, you need to remove other app server plugin, if you have it already installed(cuz it can cause confusion). For example, if you have Tomcat app server plugin installed(default behavior for any newly created Grails application), you need remove it by:
-
-`grails uninstall-plugin tomcat`
+First of all, you need to remove other app server plugin, if you have it already installed(cuz it can cause confusion). For example, if you have Tomcat app server plugin installed(default behavior for any newly created Grails application), you need remove it deleting its dependency in BuildConfig.groovy.
 
 The same is for any other app servers(jetty, etc.)
 
@@ -45,7 +45,7 @@ Then, you can just run
 
 `grails run-app`
 
-and now you have working grails application under Glassfish app server.
+and now you have working Grails application under Glassfish app server.
 
 ## Additional config params
 You can specify some config params, if you need it. Each config param should be specified in `BuildConfig.groovy` file, and should have this semantic:
