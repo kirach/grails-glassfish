@@ -13,3 +13,5 @@ grails-glassfish*.zip
 grails-glassfish*.zip.sha1
 plugin.xml
 .*.swp
+web-app/
+*.log
